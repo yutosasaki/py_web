@@ -12,3 +12,14 @@ class Persion():
 class Manager(models.Modle):
 
     person = models.ForeignKey('Person')
+    department = models.IntegerField()
+    joined_at = models.DateTimeField()
+    quited_at = models.DataTimeField(null=True, blank=True)
+
+class Worker(models.Model):
+
+    person = models.ForeignKey('Person')
+    department = models.IntegerField()
+    joined_at = models.DateTimeField()
+    quited_at = models.DataTimeField(null=True, blank=True)
+    manager = models.ForeignKey('Manager')
