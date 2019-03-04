@@ -1,25 +1,29 @@
 from django.db import models
+#from django.contrib.auth.models import AbstractBaseUser
+#from manager.managers import PersonManager
 
-class Persion():
+
+class Person(models.Model):
+    #objects = PersionManager()
 
     name = models.CharField(max_length=32)
-    birthday = models.DataTimeField()
+    birthday = models.DateTimeField()
     sex = models.IntegerField(editable=False)
     address_from = models.IntegerField()
     current_address = models.IntegerField()
     email = models.EmailField()
 
-class Manager(models.Modle):
 
-    person = models.ForeignKey('Person')
+class Manager(models.Model):
+    person = models.ForeignKey('Person', on_delete=models.CASCADE)
     department = models.IntegerField()
     joined_at = models.DateTimeField()
-    quited_at = models.DataTimeField(null=True, blank=True)
+    quited_at = models.DateTimeField(null=True, blank=True)
+
 
 class Worker(models.Model):
-
-    person = models.ForeignKey('Person')
+    person = models.ForeignKey('Person', on_delete=models.CASCADE)
     department = models.IntegerField()
     joined_at = models.DateTimeField()
-    quited_at = models.DataTimeField(null=True, blank=True)
-    manager = models.ForeignKey('Manager')
+    quited_at = models.DateTimeField(null=True, blank=True)
+    manager = models.ForeignKey('Manager', on_delete=models.CASCADE)
